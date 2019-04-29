@@ -1,0 +1,35 @@
+server {
+  listen [::]:80;
+  listen 80;
+  
+  server_name jenkins.example.com;
+
+  access_log /var/log/nginx/jenkins_access.log;
+  error_log /var/log/nginx/jenkins_error.log;
+
+  location / {
+    proxy_pass http://localhost:8080;
+    proxy_redirect off;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Host $server_name;
+    proxy_set_header X-Forwarded-Proto https;
+  }
+}
+​
+21
+    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+22
+    listen 443 ssl; # managed by Certbot
+23
+    ssl_certificate /etc/letsencrypt/live/jenkins.vivecho.io/fullchain.pem; # managed by Certbot
+24
+    ssl_certificate_key /etc/letsencrypt/live/jenkins.vivecho.io/privkey.pem; # managed by Certbot
+25
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+26
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+27
+​
+28

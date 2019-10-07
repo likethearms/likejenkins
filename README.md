@@ -3,6 +3,8 @@
 ## USEFUL PLUGINS
 - Kubernetes Continuous Deploy Plugin
 - Google Container Registry Auth Plugin
+- Slack Notification Plugin
+- Blue Ocean Plugin
 ### Build
 ```sh
 $ docker build -t likejenkins .
